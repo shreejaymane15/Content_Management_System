@@ -1,0 +1,28 @@
+CREATE database CMS;
+
+GRANT ALL privileges ON CMS.* TO 'Shreejay'@'localhost';
+
+Flush privileges;
+
+
+CREATE table User 
+(user_id int primary key, first_name varchar(50), last_name varchar(50) , email varchar(50) , password varchar(50), token varchar(200));
+
+CREATE table Role
+(int role_id primary key, varchar[50] role_name);
+
+CREATE table Topic
+(int topic_id primary key, varchar[50] topic_name, varchar[255	] desc);
+
+CREATE table Tutorial
+(int tutorial_id primary key, varhchar[50] title, int visits, date publishDate, varchar[255] contents, int author_id, int topic_id
+(author_id)forign key referances User(user_id)
+(topic_id)foriegn key referances Topic(topic_id));
+  
+CREATE table Comment 
+(int comment_id primary key, varchar[255] comment, int tutorial_id, int user_id
+(tutorial_id) forign key referances Tutorial(tutorial_id)
+(user_id) forign key referances User(user_id));
+ 
+CREATE table Address
+();

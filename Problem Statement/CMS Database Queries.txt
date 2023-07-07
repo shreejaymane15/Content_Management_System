@@ -1,0 +1,66 @@
+create table user
+(
+	user_id int primary key auto_increment,
+	first_name varchar(50),
+	last_name varchar(50),
+	email varchar(50),
+	password varchar(50),
+	token varchar(100)
+);
+
+create table users_role
+(
+	user_id int,
+	role_id int,
+	primary key(user_id, role_id)
+);
+	
+
+create table role
+(
+	role_id int primary key,
+	role_name varchar(50)
+	
+);
+
+create table topic
+(
+	topic_id int primary key auto_increment,
+	topic_name varchar(50),
+	topic_desc varchar(255)
+);
+
+create table tutorial
+(
+	tutorial_id int primary key auto_increment,
+	title varchar(50),
+	visits int,
+	publishDate date,
+	contents varchar(255),
+	author_id int,
+	topic_id int,
+	foreign key(author_id) references user(user_id),
+	foreign key(topic_id) references topic(topic_id)
+);
+
+create table comment
+(
+	comment_id int primary key auto_increment,
+	comments varchar(255),
+	tutorial_id int,
+	user_id int,
+	foreign key(tutorial_id) references tutorial(tutorial_id),
+	foreign key(user_id) references user(user_id)
+);
+
+alter table comment ADD UNIQUE unique_index(tutorial_id, user_id);
+
+INSERT INTO user
+Values(1, "Shreejay", "Mane", "shreejaymane15@gmail.com", "Shree@123", NULL),
+(2, "Shubham", "Patil", "shubhampatil@gmail.com", "Shubham@123", NULL);
+
+
+
+
+INSERT into topic values (1, "Servlets", "VIMP"), (2, "JSP", "IMP"), (3,
+"JPA", "VIMP"), (4, "Spring Framework", "IMP");
